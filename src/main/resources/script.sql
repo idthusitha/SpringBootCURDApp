@@ -1,4 +1,4 @@
-create table APP_USER (
+create table customer (
    id BIGINT NOT NULL AUTO_INCREMENT,
    name VARCHAR(30) NOT NULL,
    age  INTEGER NOT NULL,

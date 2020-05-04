@@ -32,6 +32,7 @@ dependencies {
 	
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	
 	//this lib for net.sf json lib loading
 	compile 'commons-collections:commons-collections:3.2'
