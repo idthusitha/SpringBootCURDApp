@@ -24,10 +24,10 @@ gradle deploy
 
 
 
-## WEB interface
+### WEB interface
 
 http://localhost:8080/SpringBootCURDApp/
 
 
-## Swagger API
+### Swagger API
 http://localhost:8080/SpringBootCURDApp/swagger-ui.html#/
