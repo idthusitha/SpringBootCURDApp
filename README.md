@@ -14,3 +14,20 @@ http://localhost:8080/SpringBootCURDApp/test
 ```
 
 
+## Build and deploy
+
+
+
+cd /rezsystem/workspace_ride/SpringBootCURDApp
+gradle deploy
+
+
+
+
+## WEB interface
+
+http://localhost:8080/SpringBootCURDApp/
+
+
+## Swagger API
+http://localhost:8080/SpringBootCURDApp/swagger-ui.html#/

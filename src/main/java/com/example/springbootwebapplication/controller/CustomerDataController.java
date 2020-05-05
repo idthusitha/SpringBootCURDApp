@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springbootwebapplication.impl.CustomerDataService;
 
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -22,6 +23,7 @@ public class CustomerDataController {
 	@Autowired
 	private CustomerDataService customerDataService;
 
+	@ApiOperation(value = "Save Customer data")
 	@RequestMapping(value = "/customer/save", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<String> saveCustomerData(@RequestBody String requestBody) {
 		JSONObject response = new JSONObject();
@@ -40,6 +42,7 @@ public class CustomerDataController {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	@ApiOperation(value = "Find Customer data")
 	@RequestMapping(value = "/customer/find/{customerId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<String> findCustomerData(@PathVariable(value = "customerId") String customerId) {
 		JSONArray response = new JSONArray();
@@ -58,6 +61,7 @@ public class CustomerDataController {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	@ApiOperation(value = "Update Customer data")
 	@RequestMapping(value = "/customer/update", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<String> updatCustomerData(@RequestBody String requestBody) {
 		JSONObject response = new JSONObject();
@@ -76,6 +80,7 @@ public class CustomerDataController {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	@ApiOperation(value = "Delete Customer data")
 	@RequestMapping(value = "/customer/delete/{customerId}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<String> removeCustomerData(@PathVariable(value = "customerId") String customerId) {
 		JSONObject response = new JSONObject();
@@ -92,6 +97,7 @@ public class CustomerDataController {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	@ApiOperation(value = "Service Check link")
 	@RequestMapping(value = "/servicecheck", method = RequestMethod.GET)
 	public String servicecheck() {
 		return "This is the First Message From Remote common-data-service!";
