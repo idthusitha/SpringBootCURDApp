@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springbootwebapplication.impl.CustomerDataService;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
@@ -41,20 +42,23 @@ public class CustomerDataController {
 
 	@RequestMapping(value = "/customer/find/{customerId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<String> findCustomerData(@PathVariable(value = "customerId") String customerId) {
-		JSONObject response = new JSONObject();
+		JSONArray response = new JSONArray();
 		try {
 
 			response = customerDataService.findCustomerData(customerId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.accumulate("status", "ERROR");
+
+			JSONObject responseTemp = new JSONObject();
+			responseTemp.accumulate("status", "ERROR");
+			response.add(responseTemp);
 		}
 
 		return ResponseEntity.ok(response.toString());
 	}
 
-	@RequestMapping(value = "/customer/update", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/customer/update", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<String> updatCustomerData(@RequestBody String requestBody) {
 		JSONObject response = new JSONObject();
 		try {
@@ -72,7 +76,7 @@ public class CustomerDataController {
 		return ResponseEntity.ok(response.toString());
 	}
 
-	@RequestMapping(value = "/customer/remove/{customerId}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "/customer/delete/{customerId}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<String> removeCustomerData(@PathVariable(value = "customerId") String customerId) {
 		JSONObject response = new JSONObject();
 		try {
@@ -86,6 +90,43 @@ public class CustomerDataController {
 		}
 
 		return ResponseEntity.ok(response.toString());
+	}
+
+	@RequestMapping(value = "/servicecheck", method = RequestMethod.GET)
+	public String servicecheck() {
+		return "This is the First Message From Remote common-data-service!";
+	}
+
+	@RequestMapping(value = "/testData", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<String> testData() {
+		String results = "";
+		try {
+			JSONArray array = new JSONArray();
+
+			JSONObject json = new JSONObject();
+			json.accumulate("cityname", "London");
+			json.accumulate("statecode", "");
+			json.accumulate("countrycode", "GB");
+			json.accumulate("vendorcitycode", "20142");
+			json.accumulate("countryname", "United Kingdom");
+
+			array.add(json);
+
+			json = new JSONObject();
+			json.accumulate("cityname", "Lancaster");
+			json.accumulate("statecode", "");
+			json.accumulate("countrycode", "GB");
+			json.accumulate("vendorcitycode", "23711");
+			json.accumulate("countryname", "United Kingdom");
+
+			array.add(json);
+
+			results = array.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok(results);
 	}
 
 }
