@@ -126,7 +126,7 @@
 	       				$.each(data[i], function (key, dataValue) {
 	                   		html += "<td ><b>"+key+"</b></td>";
 	                   	});
-	       				html += "<td ><b>Action</b></td>";
+	       				html += "<td align=\"center\"><b>Action</b></td>";
 	       				html += "</tr>";
        				}
                	}); 
@@ -138,7 +138,7 @@
        				$.each(data[i], function (key, dataValue) {
                    		html += "<td >"+data[i][key]+"</td>";
                    	});
-       				html += "<td ><input type=\"button\" onClick=\"editCustomer('"+data[i].id+"')\" id=\"edit\" value=\"Edit\"/>";
+       				html += "<td align=\"center\"><input type=\"button\" onClick=\"editCustomer('"+data[i].id+"')\" id=\"edit\" value=\"Edit\"/>";
        				html += "&nbsp;<input type=\"button\" onClick=\"deleteCustomer('"+data[i].id+"')\" id=\"delete\" value=\"Delete\"/></td>";
        				html += "</tr>";
                	});       			
@@ -155,7 +155,7 @@
 </head>
 
 <body id="page-top">
-	<input id="id" type="hidden" name="id" value="">
+ <input id="id" type="hidden" name="id" value="">
  <div class="py-3">		
  	<div class="container-fluid" style="background: #e3dada;" id="main">
 	
@@ -168,38 +168,26 @@
 	<hr/>
 	
 	<h1 style="background: white;">User</h1>	
-	<table style="width: 100%; background: white;" cellSpacing=0 cellPadding=1>
+	<table class="table" style="width: 100%; background: white;" cellSpacing=0 cellPadding=1>
 		<tr>
-			<td>Name</td>
-			<td></td>
-			<td><input type="text" id="user_name" size="50"/></td>
-			<td></td>
-		</tr>
-		<tr><td colspan="4">&nbsp;</td></tr>		
+			<td>Name</td>			
+			<td><input type="text" id="user_name" size="50"/></td>			
+		</tr>				
 		<tr>
-			<td>Age</td>
-			<td></td>
-			<td><input type="text" id="age" size="50"/></td>
-			<td></td>
-		</tr>
-		<tr><td colspan="4">&nbsp;</td></tr>
+			<td>Age</td>			
+			<td><input type="text" id="age" size="50"/></td>			
+		</tr>		
 		<tr>
-			<td>Salary</td>
+			<td>Salary</td>			
+			<td><input type="text" id="salary" size="50"/></td>			
+		</tr>		
+		<tr>			
 			<td></td>
-			<td><input type="text" id="salary" size="50"/></td>
-			<td></td>
-		</tr>
-		<tr><td colspan="4">&nbsp;</td></tr>	
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>
+			<td align="right">
 				<input type="button" id="Add" value="Add"/>
 				<input type="button" id="reset" value="Reset Form"/>
 			</td>
-		</tr>
-		
+		</tr>		
 	</table>
 	
 	<br/><br/>
