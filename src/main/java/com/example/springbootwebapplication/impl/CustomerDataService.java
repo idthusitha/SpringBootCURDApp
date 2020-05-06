@@ -37,7 +37,7 @@ public class CustomerDataService {
 		if ("0".equals(customerId)) {
 			customerList = customerDataRepository.findAll();
 		} else {
-			Customer customer = customerDataRepository.findOne(Integer.parseInt(customerId));
+			Customer customer = customerDataRepository.findByUserId(Integer.parseInt(customerId));
 			customerList.add(customer);
 		}
 
@@ -51,7 +51,7 @@ public class CustomerDataService {
 
 	public void updatCustomerData(JSONObject json) {
 		Customer customer = new Customer();
-		customer.setId(json.getInt("id"));
+		customer.setUserId(json.getInt("id"));
 		customer.setUserName(json.getString("userName"));
 		customer.setAge(json.getString("age"));
 		customer.setSalary(json.getString("salary"));
@@ -63,7 +63,7 @@ public class CustomerDataService {
 
 	public void removeCustomerData(String customerId) {
 		Customer customer = new Customer();
-		customer.setId(Integer.parseInt(customerId));
+		customer.setUserId(Integer.parseInt(customerId));
 		//customer.setStatus("N");
 
 		customerDataRepository.delete(customer);

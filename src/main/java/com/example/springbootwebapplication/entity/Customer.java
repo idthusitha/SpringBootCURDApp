@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private Integer id;
+	private Integer userId;
 
 	@Column(name = "name")
 	private String userName;
@@ -57,12 +57,12 @@ public class Customer implements Serializable {
 		this.userName = userName;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getStatus() {
