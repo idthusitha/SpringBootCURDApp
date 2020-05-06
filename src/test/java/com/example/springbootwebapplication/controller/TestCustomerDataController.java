@@ -1,31 +1,46 @@
 package com.example.springbootwebapplication.controller;
 
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.http.MediaType;
-//import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-//import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-//
-//import com.example.springbootwebapplication.controller.CustomerDataController;
-//import org.springframework.test.context.junit4.SpringRunner;
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(CustomerDataController.class)
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.example.springbootwebapplication.impl.CustomerDataService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+@WebMvcTest(controllers = CustomerDataController.class)
 public class TestCustomerDataController {
 
-//	@Autowired
-//	private MockMvc mvc;
-//
+	@Autowired
+	private MockMvc mvc;
+	
+	@Autowired
+	private ObjectMapper objectMapper;
+
+	@MockBean
+	private CustomerDataService customerDataService;
+
 //	@Test
 //	public void getAllCustomerAPI() throws Exception {
 //		mvc.perform(MockMvcRequestBuilders
 //		.get("/customer/find/0")
 //		.accept(MediaType.APPLICATION_JSON))
-//		//.andDo(print())
-//		//.andExpect(status().isOk())
+//		.andDo(print())
+//		.andExpect(status().isOk())
 //		.andExpect(MockMvcResultMatchers.jsonPath("$.customer").exists())
 //		.andExpect(MockMvcResultMatchers.jsonPath("$.customer[*].id").isNotEmpty());
 //	}
