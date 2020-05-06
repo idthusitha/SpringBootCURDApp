@@ -1,47 +1,31 @@
-buildscript {
-	ext {
-		springBootVersion = '1.5.19.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-		jcenter()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
-apply plugin: "io.spring.dependency-management"
 
 group = 'com.example'
 //version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
-
-war {
-	baseName = 'SpringBootCURDApp'	
-}
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	compile fileTree(dir: 'lib', include: ['*.jar'])	
-	
-	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	
-	compile("org.springframework:spring-jdbc")
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')	
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtime "mysql:mysql-connector-java:5.1.27"
+	
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 	
 	
 	//this lib for net.sf json lib loading
 	compile 'commons-collections:commons-collections:3.2'
-	compile 'commons-beanutils:commons-beanutils:1.9.3'		
+	compile 'commons-beanutils:commons-beanutils:1.9.3'
 	compile 'net.sf.ezmorph:ezmorph:1.0.6'
 	compile 'net.sf.json-lib:json-lib:2.4:jdk15'
 	compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
@@ -51,21 +35,21 @@ dependencies {
 	compile 'io.springfox:springfox-swagger2:2.6.1'
 	compile 'io.springfox:springfox-swagger-ui:2.6.1'
 	
-		
+	compile group: 'log4j', name: 'log4j', version: '1.2.16'
 }
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5"
-	}
+
+test {
+	useJUnitPlatform()
 }
+
 
 def tomcat_home = "/rezsystem/tomcat1/apache-tomcat-8.0.36"
 
-task deploy(dependsOn: [clean,war]) << {		
+task deploy(dependsOn: [clean,build]) {
 	println "Copy from ${libsDir.getPath()} into ${tomcat_home}/webapps"
-	copy {	  
+	copy {
 	  from "build/libs"
 	  into "${tomcat_home}/webapps"
-	  include "*.war"	  
+	  include "*.war"
 	}
 }

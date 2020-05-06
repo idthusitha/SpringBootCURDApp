@@ -100,6 +100,6 @@ public class CustomerDataController {
 	@ApiOperation(value = "Service Check link")
 	@RequestMapping(value = "/servicecheck", method = RequestMethod.GET)
 	public String servicecheck() {
-		return "This is the First Message From Remote common-data-service!";
+		return "This is the First Message From Remote SpringBootCURDApp!";
 	}
 }
