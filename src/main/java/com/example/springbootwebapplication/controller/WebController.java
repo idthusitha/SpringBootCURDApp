@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WebController {
 
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public @ResponseBody String index() {
-//		return "index";
+//	public String index() {
+//		return "index.html";
 //	}
 	
-	@RequestMapping("/")
-	public @ResponseBody String greeting() {
-		return "Hello, World";
-	}
+//	@RequestMapping("/")
+//	public @ResponseBody String greeting() {
+//		return "Hello, World";
+//	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public @ResponseBody String testPage() {

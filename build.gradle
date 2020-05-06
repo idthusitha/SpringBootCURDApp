@@ -2,11 +2,16 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'war'
 }
 
 group = 'com.example'
 //version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+war {
+	baseName = 'spring-boot-web-application'
+}
 
 repositories {
 	mavenCentral()
@@ -15,9 +20,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtime "mysql:mysql-connector-java:5.1.27"
-	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
+	
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -43,9 +49,9 @@ test {
 }
 
 
-def tomcat_home = "/rezsystem/tomcat1/apache-tomcat-8.0.36"
+def tomcat_home = "/rezsystem/tomcat1/apache-tomcat-9.0.34"
 
-task deploy(dependsOn: [clean,build]) {
+task deploy(dependsOn: [war]) {
 	println "Copy from ${libsDir.getPath()} into ${tomcat_home}/webapps"
 	copy {
 	  from "build/libs"

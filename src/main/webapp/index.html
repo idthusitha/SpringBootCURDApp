@@ -86,7 +86,7 @@
 		       contentType: 'application/json; charset=utf-8', 
 	           type: 'GET',
 	           success: function(data) {	        
-	        	    $("#id").val(data[0].id);
+	        	    $("#id").val(data[0].userId);
 	        		$("#user_name").val(data[0].userName);
 	   				$("#age").val(data[0].age);
 	   				$("#salary").val(data[0].salary);
@@ -138,8 +138,8 @@
        				$.each(data[i], function (key, dataValue) {
                    		html += "<td >"+data[i][key]+"</td>";
                    	});
-       				html += "<td align=\"center\"><input type=\"button\" onClick=\"editCustomer('"+data[i].id+"')\" id=\"edit\" value=\"Edit\"/>";
-       				html += "&nbsp;<input type=\"button\" onClick=\"deleteCustomer('"+data[i].id+"')\" id=\"delete\" value=\"Delete\"/></td>";
+       				html += "<td align=\"center\"><input type=\"button\" onClick=\"editCustomer('"+data[i].userId+"')\" id=\"edit\" value=\"Edit\"/>";
+       				html += "&nbsp;<input type=\"button\" onClick=\"deleteCustomer('"+data[i].userId+"')\" id=\"delete\" value=\"Delete\"/></td>";
        				html += "</tr>";
                	});       			
         		
