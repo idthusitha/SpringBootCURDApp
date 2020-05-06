@@ -28,12 +28,12 @@ public class TestingWebApplicationTest {
 //		.andExpect(content().string(containsString("Dashboard")));
 //	}
 	
-//	@Test
-//	public void shouldReturnServiceCheckMessage() throws Exception {
-//	
-//		this.mockMvc.perform(get("/servicecheck"))
-//		.andDo(print())
-//		.andExpect(status().isOk())
-//		.andExpect(content().string(containsString("Message From Remote SpringBootCURDApp")));
-//	}	
+	@Test
+	public void shouldReturnServiceCheckMessage() throws Exception {
+	
+		this.mockMvc.perform(get("/servicecheck"))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().string(containsString("Message From Remote SpringBootCURDApp")));
+	}	
 }
