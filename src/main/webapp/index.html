@@ -44,7 +44,7 @@
 		$( "#Add" ).click(function() {
 			var customerObject = new Object();
 			if($("#id").val() != ""){
-				customerObject.id = $("#id").val();
+				customerObject.userId = $("#id").val();
 			}
 			customerObject.userName = $("#user_name").val();
 			customerObject.age = $("#age").val();
@@ -59,7 +59,7 @@
 				       contentType: 'application/json; charset=utf-8', 
 			           type: 'PUT',
 			           success: function(data) {		        	    
-			        	   alert("Data updated "+data.status);
+			        	   alert("Data updated success");
 			        	   loadCustomerList();
 			           }
 			       });
@@ -71,7 +71,7 @@
 				       contentType: 'application/json; charset=utf-8', 
 			           type: 'POST',
 			           success: function(data) {		        	    
-			        	   alert("Data saved "+data.status);
+			        	   alert("Data saved success");
 			        	   loadCustomerList();
 			           }
 			     });
@@ -103,7 +103,7 @@
 		       contentType: 'application/json; charset=utf-8', 
 	           type: 'DELETE',
 	           success: function(data) {		        	    
-	        	   alert("Data deleted "+data.status);
+	        	   alert("Data deleted Success");
 	        	   loadCustomerList();
 	           }
 	    });	

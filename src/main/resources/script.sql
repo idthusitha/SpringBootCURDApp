@@ -1,5 +1,5 @@
 create table rezos_common.customer (
-   id BIGINT NOT NULL AUTO_INCREMENT,
+   id MEDIUMINT NOT NULL AUTO_INCREMENT,
    name VARCHAR(30) NOT NULL,
    age  INTEGER NOT NULL,
    salary REAL NOT NULL,

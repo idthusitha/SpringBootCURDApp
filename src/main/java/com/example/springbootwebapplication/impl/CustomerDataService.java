@@ -19,52 +19,31 @@ public class CustomerDataService {
 	@Autowired
 	private CustomerDataRepository customerDataRepository;
 
-	public void saveCustomerData(JSONObject json) {
-		Customer customer = new Customer();
-		customer.setUserName(json.getString("userName"));
-		customer.setAge(json.getString("age"));
-		customer.setSalary(json.getString("salary"));
-		customer.setStatus("Y");
-
-		customerDataRepository.saveAndFlush(customer);
-
+	public Integer saveCustomerData(Customer customer) {		
+		 customer = customerDataRepository.saveAndFlush(customer);
+		 return customer.getUserId();		 
+		 
 	}
 
-	public JSONArray findCustomerData(String customerId) {
+	public List<Customer> findCustomerData(String customerId) {
 		List<Customer> customerList = new ArrayList();
-		JSONArray array = new JSONArray();
-
 		if ("0".equals(customerId)) {
 			customerList = customerDataRepository.findAll();
 		} else {
 			Customer customer = customerDataRepository.findByUserId(Integer.parseInt(customerId));
 			customerList.add(customer);
 		}
-
-		if (customerList.size() > 0) {
-			for (Customer customer : customerList) {
-				array.add(CommonUtils.getInstance().objectToJSON(customer));
-			}
-		}
-		return array;
+		return customerList;
 	}
 
-	public void updatCustomerData(JSONObject json) {
-		Customer customer = new Customer();
-		customer.setUserId(json.getInt("id"));
-		customer.setUserName(json.getString("userName"));
-		customer.setAge(json.getString("age"));
-		customer.setSalary(json.getString("salary"));
-		customer.setStatus("Y");
-
-		customerDataRepository.saveAndFlush(customer);
-
+	public Customer updatCustomerData(Customer customer) {
+		return customerDataRepository.saveAndFlush(customer);
 	}
 
 	public void removeCustomerData(String customerId) {
 		Customer customer = new Customer();
 		customer.setUserId(Integer.parseInt(customerId));
-		//customer.setStatus("N");
+		// customer.setStatus("N");
 
 		customerDataRepository.delete(customer);
 	}

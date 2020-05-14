@@ -18,16 +18,28 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtime "mysql:mysql-connector-java:5.1.27"
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'mysql:mysql-connector-java'
-	
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	runtime "mysql:mysql-connector-java:5.1.27"
+	runtimeOnly 'mysql:mysql-connector-java'
+		
+	//spring boot test
+	//testImplementation('org.springframework.boot:spring-boot-starter-test') {
+	//	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	//}
 	
+	//test NG
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '1.5.10.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'org.testng', name: 'testng', version: '6.14.3'
+	
+	//JSON Object bind to response and request
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.4'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.4'
 	
 	//this lib for net.sf json lib loading
 	compile 'commons-collections:commons-collections:3.2'
@@ -45,7 +57,8 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
+	//useJUnitPlatform()
+	useTestNG()
 }
 
 
