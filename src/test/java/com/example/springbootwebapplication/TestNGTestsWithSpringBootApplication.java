@@ -23,7 +23,7 @@ public class TestNGTestsWithSpringBootApplication extends BaseIT {
 		Assert.assertEquals(2 * 2, 4, "2x2 should be 4");
 	}
 
-	@Test(dataProvider = "numberGenerator")
+	@Test(groups="regression", dataProvider = "numberGenerator")
 	public void testParameter(int num1, int num2, int output) {
 		Assert.assertEquals(num1 * num2, output, "Out put should be:" + output);
 	}
