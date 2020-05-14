@@ -58,7 +58,11 @@ dependencies {
 
 test {
 	//useJUnitPlatform()
-	useTestNG()
+	
+	useTestNG(){
+		// runlist to executed. path is relative to current folder
+		suites 'src/test/resources/testing.xml'
+	}	
 }
 
 
