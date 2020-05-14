@@ -60,9 +60,20 @@ test {
 	//useJUnitPlatform()
 	
 	useTestNG(){
+		//includeGroups 'smoke', 'sanity'
+		//excludeGroups 'regression'
+		
 		// runlist to executed. path is relative to current folder
 		suites 'src/test/resources/testing.xml'
+		
+		useDefaultListeners = true
+		
+		reports.html.setDestination(file("test-output"))		
+		
 	}	
+	testLogging {
+		events "PASSED", "FAILED", "SKIPPED"
+	}
 }
 
 
