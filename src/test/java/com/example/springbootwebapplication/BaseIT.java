@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
 import com.example.springbootwebapplication.controller.WebController;
@@ -31,12 +32,17 @@ public class BaseIT extends AbstractTestNGSpringContextTests {
 
 	private MockMvc mockMvc;
 
+	@BeforeClass(groups = "regression")
+	public void setupMock() {
+		logger.info("Setting up mockMvc");
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
 	private RestTemplate restTemplate;
 
 	@BeforeTest(groups = "regression")
 	public void setup() {
-		logger.info("Setting up prerequisite for test execution");
-		// mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+		logger.info("Setting up restTemplate");
 		this.restTemplate = new RestTemplate();
 	}
 

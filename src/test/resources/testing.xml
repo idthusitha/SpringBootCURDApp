@@ -11,6 +11,7 @@
 		<classes>
 			<class name="com.example.springbootwebapplication.TestNGTestsWithSpringBootApplication" />
 			<class name="com.example.springbootwebapplication.controller.TestCustomerDataController" />
+			<class name="com.example.springbootwebapplication.controller.TestMockCustomerDataController" />
 		</classes>
 	</test>
 </suite>
