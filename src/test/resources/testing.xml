@@ -10,6 +10,7 @@
 	<test name="Tests">
 		<classes>
 			<class name="com.example.springbootwebapplication.TestNGTestsWithSpringBootApplication" />
+			<class name="com.example.springbootwebapplication.controller.TestCustomerDataController" />
 		</classes>
 	</test>
 </suite>

@@ -19,9 +19,9 @@ public class CustomerDataService {
 	@Autowired
 	private CustomerDataRepository customerDataRepository;
 
-	public Integer saveCustomerData(Customer customer) {		
+	public Customer saveCustomerData(Customer customer) {		
 		 customer = customerDataRepository.saveAndFlush(customer);
-		 return customer.getUserId();		 
+		 return customer;		 
 		 
 	}
 

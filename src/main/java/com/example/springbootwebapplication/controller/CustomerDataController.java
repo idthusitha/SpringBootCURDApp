@@ -35,14 +35,13 @@ public class CustomerDataController {
 	public ResponseEntity<?> saveCustomerData(@RequestBody Customer customer, HttpServletResponse response) {
 		JSONObject responseJSON = new JSONObject();
 		try {
-			customerDataService.saveCustomerData(customer);
+			customer = customerDataService.saveCustomerData(customer);
 			response.setStatus(HttpServletResponse.SC_CREATED);
-			responseJSON.accumulate("status", "SUCCESS");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return ResponseEntity.ok(responseJSON.toString());
+		return ResponseEntity.ok(customer);
 	}
 
 	@ApiOperation(value = "Find Customer data")
@@ -52,7 +51,7 @@ public class CustomerDataController {
 		List<Customer> list = null;
 		try {
 			list = customerDataService.findCustomerData(customerId);
-			response.setStatus(HttpServletResponse.SC_ACCEPTED);
+			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,20 +60,16 @@ public class CustomerDataController {
 
 	@ApiOperation(value = "Update Customer data")
 	@RequestMapping(value = "/customer/update", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<String> updatCustomerData(@RequestBody Customer customer, HttpServletResponse response) {
+	public ResponseEntity<?> updatCustomerData(@RequestBody Customer customer, HttpServletResponse response) {
 		JSONObject responseJSON = new JSONObject();
 		try {
-
-			customerDataService.updatCustomerData(customer);
-
-			responseJSON.accumulate("status", "SUCCESS");
+			customer = customerDataService.updatCustomerData(customer);
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			responseJSON.accumulate("status", "ERROR");
 		}
-
-		return ResponseEntity.ok(responseJSON.toString());
+		return ResponseEntity.ok(customer);
 	}
 
 	@ApiOperation(value = "Delete Customer data")
