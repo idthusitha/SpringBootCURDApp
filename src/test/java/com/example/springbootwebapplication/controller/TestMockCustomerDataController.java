@@ -14,6 +14,7 @@ public class TestMockCustomerDataController extends BaseIT {
 	@Test(groups = "regression")
 	public void testLoadCustomer() throws Exception {
 		getMockMvc().perform(get("/customer/find/1"))
+				//.andDo(print())
 				.andExpect(status().isOk())				
 				.andExpect(content().contentType("application/json"))
 				.andExpect(jsonPath("[0].userName").value("Thusitha"))
