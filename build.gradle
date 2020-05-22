@@ -21,6 +21,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
 
 	runtime "mysql:mysql-connector-java:5.1.27"
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -77,7 +79,7 @@ test {
 }
 
 
-def tomcat_home = "/rezsystem/tomcat1/apache-tomcat-9.0.34"
+def tomcat_home = "/system/tomcat1/apache-tomcat-9.0.34"
 
 task deploy(dependsOn: [war]) {
 	println "Copy from ${libsDir.getPath()} into ${tomcat_home}/webapps"
